@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-strech
+FROM penjdk:8-jdk-alpine
 
 WORKDIR /app
 
