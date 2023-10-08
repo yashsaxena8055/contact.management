@@ -1,0 +1,15 @@
+version: '1'
+services:
+  contact-management:
+    image: CONTACT_MANAGEMENT_01
+    hostname: contact-management
+    container_name: contact-management
+    environment:
+      -SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/contact_system?autoReconnect=true
+      -SPRING_DATASOURCE_USERNAME=root
+      -SPRING_DATASOURCE_PASSWORD=root
+
+    volumes:
+      - contact-management: /app
+    ports:
+      - "8080:8080"

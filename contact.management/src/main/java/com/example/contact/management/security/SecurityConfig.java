@@ -1,6 +1,7 @@
 package com.example.contact.management.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,13 +15,15 @@ public class SecurityConfig  {
     private JwtEntryPoint point;
     @Autowired
     private JwtAuthenticationFilter filter;
+    @Value("${security.excluded.urls}")
+    private String[] excluedUrls;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests().
-                antMatchers("/auth/**").permitAll()
+                antMatchers(excluedUrls).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))
