@@ -1,4 +1,4 @@
-FROM penjdk:8-jdk-alpine
+FROM openjdk:8-jdk-alpine
 
 WORKDIR /app
 
